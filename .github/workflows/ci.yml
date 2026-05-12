@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate version consistency
+        run: |
+          VERSION=$(node -e "
+            const fs = require('fs');
+            const readme = fs.readFileSync('README.md', 'utf8');
+            const m = readme.match(/@coree-ai\/coree@([\d.]+)/);
+            if (!m) { console.error('Version not found in README'); process.exit(1); }
+            console.log(m[1]);
+          ")
+          echo "README version: $VERSION"
+          if ! grep -q "@coree-ai/coree@$VERSION" opencode.md; then
+            echo "ERROR: version mismatch between README.md and opencode.md"
+            exit 1
+          fi
+          echo "Version is consistent: $VERSION"
