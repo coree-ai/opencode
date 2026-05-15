@@ -1,0 +1,11 @@
+{
+  "name": "@coree-ai/opencode-plugin",
+  "private": true,
+  "scripts": {
+    "release": "release-it"
+  },
+  "devDependencies": {
+    "@release-it/bumper": "^6.0.0",
+    "release-it": "^17.0.0"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "git": {
+    "commit": true,
+    "commitMessage": "chore: bump to ${version}",
+    "tag": false,
+    "push": true
+  },
+  "github": { "release": false },
+  "npm": { "publish": false },
+  "hooks": {
+    "after:bump": "node scripts/update-npx-pin.mjs ${version}"
+  }
+}
