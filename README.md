@@ -22,7 +22,7 @@ project root (project-scoped), and add:
   "mcp": {
     "coree": {
       "type": "local",
-      "command": ["npx", "--yes", "@coree-ai/coree@0.13.0", "serve"],
+      "command": ["npx", "--yes", "@coree-ai/coree@0.14.0", "serve"],
       "environment": {
         "COREE__MEMORY__REMOTE_AUTH_TOKEN": "{env:COREE__MEMORY__REMOTE_AUTH_TOKEN}",
         "COREE__MEMORY__REMOTE_URL": "{env:COREE__MEMORY__REMOTE_URL}",

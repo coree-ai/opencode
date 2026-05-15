@@ -30,4 +30,4 @@ Use `mcp_coree_store_memories` to save these findings. Use `importance >= 0.8` f
 
 For tentative observations during exploration, use `mcp_coree_capture_note`. These are reviewed at the start of the next session.
 
-<!-- coree version: @coree-ai/coree@0.13.0 -->
+<!-- coree version: @coree-ai/coree@0.14.0 -->
