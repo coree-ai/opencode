@@ -1,69 +1,36 @@
-# Coree opencode Integration
+# Coree opencode Plugin
 
-[Coree](https://github.com/coree-ai/coree) provides persistent memory and code intelligence for AI agents. This repository contains the MCP server configuration and context file for integrating Coree into [opencode](https://opencode.ai).
+[Coree](https://github.com/coree-ai/coree) provides persistent memory and code intelligence for AI agents.
+This plugin registers the coree MCP server and handles lifecycle events in opencode.
 
 ## Features
 
-- **Persistent Memory**: Stores decisions, architectural discoveries, and gotchas across sessions.
-- **Code Intelligence**: Hybrid search over source code and git history.
+- **MCP Server**: Automatically registers the coree MCP server in opencode.
+- **Session Hooks**: Injects context on session start, stop, and compaction.
+- **Agent Instructions**: `opencode.md` tells the agent when and how to use coree's tools.
 
 ## Installation
 
-opencode does not yet support a distributable MCP plugin format. Installation
-requires two manual steps.
-
-### 1. Add the MCP server to opencode.json
-
-Edit `~/.config/opencode/opencode.json` (global) or `opencode.json` in your
-project root (project-scoped), and add:
+Add the plugin to your `opencode.json`:
 
 ```json
 {
-  "mcp": {
-    "coree": {
-      "type": "local",
-      "command": ["npx", "--yes", "@coree-ai/coree@0.14.0", "serve"],
-      "environment": {
-        "COREE__MEMORY__REMOTE_AUTH_TOKEN": "{env:COREE__MEMORY__REMOTE_AUTH_TOKEN}",
-        "COREE__MEMORY__REMOTE_URL": "{env:COREE__MEMORY__REMOTE_URL}",
-        "COREE__INDEX__REMOTE_AUTH_TOKEN": "{env:COREE__INDEX__REMOTE_AUTH_TOKEN}",
-        "COREE__INDEX__REMOTE_URL": "{env:COREE__INDEX__REMOTE_URL}",
-        "COREE_BINARY_OVERRIDE": "{env:COREE_BINARY_OVERRIDE}",
-        "COREE_MODEL_DIR": "{env:COREE_MODEL_DIR}"
-      },
-      "enabled": true,
-      "timeout": 120000
-    }
-  }
+  "plugin": ["@coree-ai/opencode"]
 }
 ```
 
-The `{env:VAR}` syntax forwards the named variable from your shell environment.
-Variables not set in your environment are passed as empty strings and coree
-will ignore them.
+### Agent instructions (optional)
 
-### 2. Add the context file to your project
-
-Copy `opencode.md` from this repository into your project root:
+Add `opencode.md` to your project root (or copy to `~/.config/opencode/AGENTS.md`):
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/coree-ai/opencode/main/opencode.md \
   -o opencode.md
 ```
 
-opencode loads `opencode.md` from the project root as agent instructions. This
-tells the agent when and how to use the coree tools.
-
-Alternatively, add it globally:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/coree-ai/opencode/main/opencode.md \
-  -o ~/.config/opencode/AGENTS.md
-```
-
 ## Verify
 
-After configuration, start an opencode session and run:
+Start an opencode session and run:
 
 ```
 call the diagnose tool
@@ -82,3 +49,15 @@ search for how the indexing works
 ```
 
 See [opencode.md](./opencode.md) for detailed usage guidelines.
+
+## Known Limitations
+
+OpenCode does not yet support lifecycle hooks for automatic context injection on
+prompt submission. The plugin hooks `session.created`, `session.idle`, and
+`session.compacted` to provide context at session boundaries, but per-prompt
+context injection is not available.
+
+This is tracked upstream in issue
+[#28695](https://github.com/anomalyco/opencode/issues/28695).
+
+<!-- coree version: @coree-ai/coree@0.14.0 -->
