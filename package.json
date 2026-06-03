@@ -1,12 +1,37 @@
 {
-  "name": "@coree-ai/opencode-plugin",
-  "private": true,
+  "name": "@coree-ai/opencode",
+  "version": "0.14.0-1",
+  "description": "Persistent memory and code intelligence for AI agents",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "opencode.md",
+    "README.md"
+  ],
   "scripts": {
-    "release": "release-it"
+    "build": "tsc",
+    "release": "release-it",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": ">=1.15.0"
   },
   "devDependencies": {
+    "@opencode-ai/plugin": "^1.15.0",
     "@release-it/bumper": "^6.0.0",
-    "release-it": "^17.0.0"
+    "@types/node": "^25.9.1",
+    "release-it": "^17.0.0",
+    "typescript": "^5.0.0"
   },
-  "version": "0.14.0-1"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coree-ai/opencode.git"
+  },
+  "license": "Apache-2.0"
 }
