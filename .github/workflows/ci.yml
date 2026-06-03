@@ -17,18 +17,29 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+
       - name: Validate version consistency
         run: |
           VERSION=$(node -e "
             const fs = require('fs');
-            const readme = fs.readFileSync('README.md', 'utf8');
-            const m = readme.match(/@coree-ai\/coree@([\d.]+)/);
-            if (!m) { console.error('Version not found in README'); process.exit(1); }
+            const src = fs.readFileSync('src/index.ts', 'utf8');
+            const m = src.match(/COREE_VERSION = \"([\d.]+)\"/);
+            if (!m) { console.error('Version not found in src/index.ts'); process.exit(1); }
             console.log(m[1]);
           ")
-          echo "README version: $VERSION"
-          if ! grep -q "@coree-ai/coree@$VERSION" opencode.md; then
-            echo "ERROR: version mismatch between README.md and opencode.md"
-            exit 1
-          fi
+          echo "Source version: $VERSION"
+          for file in opencode.md README.md; do
+            if ! grep -q "@coree-ai/coree@$VERSION" "$file"; then
+              echo "ERROR: version mismatch between src/index.ts and $file"
+              exit 1
+            fi
+          done
           echo "Version is consistent: $VERSION"
