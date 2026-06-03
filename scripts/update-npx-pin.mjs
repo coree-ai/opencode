@@ -9,13 +9,24 @@ if (!pluginVersion) { console.error('Usage: update-npx-pin.mjs <plugin-version>'
 
 const coreeVersion = pluginVersion.replace(/-\d+$/, '');
 
-function replacePin(file) {
+function replacePins(file, pairs) {
   const content = fs.readFileSync(file, 'utf8');
-  const updated = content.replace(/@coree-ai\/coree@\d+\.\d+\.\d+/g, `@coree-ai/coree@${coreeVersion}`);
-  if (content !== updated) { fs.writeFileSync(file, updated); console.log(`  updated ${path.relative(REPO_ROOT, file)}`); }
+  let updated = content;
+  for (const [pattern, replacement] of pairs) {
+    updated = updated.replace(pattern, replacement);
+  }
+  if (updated !== content) { fs.writeFileSync(file, updated); console.log(`  updated ${path.relative(REPO_ROOT, file)}`); }
   else { console.warn(`  warning: no replacement in ${path.relative(REPO_ROOT, file)}`); }
 }
 
 console.log(`npx pin -> ${coreeVersion}\n`);
-replacePin(path.join(REPO_ROOT, 'opencode.md'));
-replacePin(path.join(REPO_ROOT, 'README.md'));
+replacePins(path.join(REPO_ROOT, 'opencode.md'), [
+  [/@coree-ai\/coree@\d+\.\d+\.\d+/, `@coree-ai/coree@${coreeVersion}`],
+]);
+replacePins(path.join(REPO_ROOT, 'README.md'), [
+  [/@coree-ai\/coree@\d+\.\d+\.\d+/, `@coree-ai/coree@${coreeVersion}`],
+  [/coree version: @coree-ai\/coree@\d+\.\d+\.\d+/, `coree version: @coree-ai/coree@${coreeVersion}`],
+]);
+replacePins(path.join(REPO_ROOT, 'src/index.ts'), [
+  [/COREE_VERSION = "\d+\.\d+\.\d+"/, `COREE_VERSION = "${coreeVersion}"`],
+]);

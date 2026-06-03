@@ -18,6 +18,7 @@ jobs:
         with:
           node-version: '20'
       - run: npm ci
+      - run: npm run typecheck
       - run: git config user.name "${{ github.actor }}"
       - run: git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
       - run: npx release-it ${{ inputs.coree_version }}-1 --ci
