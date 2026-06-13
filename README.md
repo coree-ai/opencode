@@ -6,7 +6,9 @@ This plugin registers the coree MCP server and handles lifecycle events in openc
 ## Features
 
 - **MCP Server**: Automatically registers the coree MCP server in opencode.
-- **Session Hooks**: Injects context on session start, stop, and compaction.
+- **Automatic context injection**: Injects relevant memories on session start and
+  live memory/code suggestions on every prompt, via opencode's `chat.message` hook.
+- **Compaction-aware**: Re-injects session context after the conversation is compacted.
 - **Agent Instructions**: `opencode.md` tells the agent when and how to use coree's tools.
 
 ## Installation
@@ -50,14 +52,4 @@ search for how the indexing works
 
 See [opencode.md](./opencode.md) for detailed usage guidelines.
 
-## Known Limitations
-
-OpenCode does not yet support lifecycle hooks for automatic context injection on
-prompt submission. The plugin hooks `session.created`, `session.idle`, and
-`session.compacted` to provide context at session boundaries, but per-prompt
-context injection is not available.
-
-This is tracked upstream in issue
-[#28695](https://github.com/anomalyco/opencode/issues/28695).
-
-<!-- coree version: @coree-ai/coree@0.14.0 -->
+<!-- coree version: @coree-ai/coree@0.14.1 -->
