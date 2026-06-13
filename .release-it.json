@@ -9,6 +9,6 @@
   "github": { "release": false },
   "npm": { "publish": false },
   "hooks": {
-    "after:bump": "node scripts/update-npx-pin.mjs ${version} && npm run build"
+    "after:bump": "npm run build"
   }
 }
