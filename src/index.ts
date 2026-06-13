@@ -80,7 +80,7 @@ export const CoreePlugin: Plugin = async ({ $ }) => {
         .join("\n")
         .trim();
       if (prompt) {
-        const suggestions = await inject("--type", "prompt", "--budget", "8000", "--query", prompt);
+        const suggestions = await inject("--type", "prompt", "--query", prompt);
         if (suggestions) chunks.push(suggestions);
       }
 
