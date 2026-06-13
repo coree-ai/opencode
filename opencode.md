@@ -31,8 +31,4 @@ To keep your memory useful, store findings as they occur:
 
 Use `store_memories` to save these findings. Store inline as you work - do not defer to the end of the session.
 
-## Notes
-
-For tentative observations during exploration, use `capture_note`. These are reviewed at the start of the next session.
-
 <!-- coree version: @coree-ai/coree@0.14.1 -->
