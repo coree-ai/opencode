@@ -36,4 +36,4 @@ jobs:
           fi
           echo "Version matches: $TAG_VERSION"
 
-      - run: npm publish --provenance --access public
+      - run: npm publish --access public --provenance --tag latest
