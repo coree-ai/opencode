@@ -1,10 +1,14 @@
 {
   "name": "@coree-ai/opencode",
-  "version": "0.14.1-4",
+  "version": "0.14.1-5",
   "description": "Persistent memory and code intelligence for AI agents",
   "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./server": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     }
