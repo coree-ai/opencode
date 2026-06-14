@@ -2,9 +2,11 @@
 
 You are using **coree**, which provides persistent memory and code intelligence across sessions.
 
-The coree plugin injects relevant memories and code context automatically at the
-start of each session and on every prompt. Treat that injected context as
-background - act on it, and use the tools below to dig deeper and to store new findings.
+The coree server runs via `npx` and surfaces relevant memories and code context.
+If your host supports automatic injection, context is delivered at session start
+and before each prompt -- treat that injected context as background. Otherwise,
+call `session_context()` at the start of each session and `search()` before each
+task. Use the tools below to dig deeper and to store new findings.
 
 ## Core Capabilities
 
@@ -30,5 +32,3 @@ To keep your memory useful, store findings as they occur:
 - **Facts**: Stable information about the project.
 
 Use `store_memories` to save these findings. Store inline as you work - do not defer to the end of the session.
-
-<!-- coree version: @coree-ai/coree@0.14.1 -->
