@@ -1,6 +1,6 @@
 import type { Plugin } from "@opencode-ai/plugin";
 
-const COREE_VERSION = "0.14.1";
+const COREE_VERSION = "0.15.0";
 
 const coreeArgs = ["--yes", `@coree-ai/coree@${COREE_VERSION}`];
 
