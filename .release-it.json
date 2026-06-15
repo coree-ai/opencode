@@ -1,14 +1,14 @@
 {
-  "git": {
-    "commit": true,
-    "commitMessage": "chore: bump to ${version}",
-    "tagName": "v${version}",
-    "tag": true,
-    "push": true
-  },
-  "github": { "release": false },
-  "npm": { "publish": false },
-  "hooks": {
-    "after:bump": "npm run build"
-  }
+	"git": {
+		"commit": true,
+		"commitMessage": "chore: bump to ${version}",
+		"tagName": "v${version}",
+		"tag": true,
+		"push": true
+	},
+	"github": { "release": false },
+	"npm": { "publish": false },
+	"hooks": {
+		"after:bump": "npm run build"
+	}
 }
