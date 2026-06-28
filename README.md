@@ -52,4 +52,4 @@ search for how the indexing works
 
 See [opencode.md](./opencode.md) for detailed usage guidelines.
 
-<!-- coree version: @coree-ai/coree@0.15.0 -->
+<!-- coree version: @coree-ai/coree@0.16.0 -->

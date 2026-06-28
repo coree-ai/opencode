@@ -1,45 +1,45 @@
 {
-	"name": "@coree-ai/opencode",
-	"version": "0.15.0",
-	"description": "Persistent memory and code intelligence for AI agents",
-	"type": "module",
-	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"default": "./dist/index.js"
-		},
-		"./server": {
-			"types": "./dist/index.d.ts",
-			"default": "./dist/index.js"
-		}
-	},
-	"files": [
-		"dist",
-		"opencode.md",
-		"README.md"
-	],
-	"scripts": {
-		"build": "tsc",
-		"release": "release-it",
-		"typecheck": "tsc --noEmit"
-	},
-	"peerDependencies": {
-		"@opencode-ai/plugin": ">=1.15.0"
-	},
-	"devDependencies": {
-		"@opencode-ai/plugin": "^1.15.0",
-		"@release-it/bumper": "^6.0.0",
-		"@types/node": "^25.9.1",
-		"release-it": "^17.0.0",
-		"typescript": "^5.0.0"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/coree-ai/opencode.git"
-	},
-	"publishConfig": {
-		"access": "public",
-		"provenance": true
-	},
-	"license": "Apache-2.0"
+  "name": "@coree-ai/opencode",
+  "version": "0.16.0",
+  "description": "Persistent memory and code intelligence for AI agents",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "opencode.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "release": "release-it",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": ">=1.15.0"
+  },
+  "devDependencies": {
+    "@opencode-ai/plugin": "^1.15.0",
+    "@release-it/bumper": "^6.0.0",
+    "@types/node": "^25.9.1",
+    "release-it": "^17.0.0",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coree-ai/opencode.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "license": "Apache-2.0"
 }
