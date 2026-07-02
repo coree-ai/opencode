@@ -1,6 +1,6 @@
 {
   "name": "@coree-ai/opencode",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "description": "Persistent memory and code intelligence for AI agents",
   "type": "module",
   "exports": {
